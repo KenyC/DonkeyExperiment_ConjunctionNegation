@@ -1,3 +1,5 @@
 www/
 results/
+other_includes/
 server_conf.py
+static.py

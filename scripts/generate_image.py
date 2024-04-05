@@ -23,9 +23,8 @@ parser.add_argument("--chunk", help='Path to the "chunk_includes" directory')
 args = parser.parse_args()
 
 chunk_includes_dir = "./"
-chunk_includes_dir = "../chunk_includes/"
-if arg.chunk:
-	chunk_includes_dir = arg.chunk
+if args.chunk:
+	chunk_includes_dir = args.chunk
 
 # %%
 """
@@ -386,8 +385,21 @@ def draw_model(model, filepath):
 
 
 # %%
-import csv
+"""
+First, let's generate an example picture
+"""
 import os
+
+class ExampleTrial(TargetTrial):
+	def constraint(self):
+		return not any(color == Color.RED and shape == Shape.SQUARE for (color, shape) in zip(self.colors, self.shapes))
+
+model = ExampleTrial().find_solution()
+
+draw_model(model, os.path.join(chunk_includes_dir, "example.svg"))
+
+# %%
+import csv
 
 trials = [
 	(3, "pos",     "forall",        TargetTrialPosForAll), 
@@ -411,7 +423,7 @@ with open(os.path.join(chunk_includes_dir, "trials.csv"), "w") as file:
 		"trial_no",
 
 		"sentence",
-		"group",
+		"set",
 		"condition",
 		"full_condition",
 
@@ -439,7 +451,7 @@ with open(os.path.join(chunk_includes_dir, "trials.csv"), "w") as file:
 				"sentence" : model.sentence(),
 
 
-				"group" :          group,
+				"set" :          group,
 				"condition" :      condition,
 				"full_condition" : full_condition,
 

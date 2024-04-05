@@ -1,10 +1,15 @@
+unique_id = [1,2].map(v=>Math.floor((1+Math.random())*0x10000).toString(16).substring(1)).join('-');
+
 PennController.ResetPrefix(null)
 
 Sequence( 
     "start",
     "instructions", 
     randomize("trial"),    
-    SendResults()
+    "colorblind_question",
+    "native_question",
+    SendResults(),
+    "end"
 )
 
 // Start screen
@@ -180,8 +185,97 @@ Template("trials.csv", row =>
             .print()
             .wait()
     )
-    .log("full_condition", row.full_condition)
-    .log("trial_no",       row.trial_no)
-    // .log("ID" ,            uniqueID)
+    .log("full_condition",   row.full_condition)
+    .log("condition",        row.condition)
+    .log("set",              row.set)
+    .log("sentence",         row.sentence)
+    .log("trial_no",         row.trial_no)
+    .log("unique_id",        unique_id)
+)
 
+
+newTrial("colorblind_question",
+    newText("Are you colorblind?")
+        .print()
+    ,
+    newCanvas(200,30)
+        .add(0, 5, newText("Yes"))
+        .add( "right at 100%" , 5 , newText("No") )
+        .print()
+    ,
+    newSelector("answer1")
+        .add( getText("Yes") , getText("No") )
+        .log()
+        .wait()
+    ,
+    newButton("Next")
+        .print()
+        .wait()
+)
+
+newTrial("native_question",
+    newText("Are you a native speaker of English?")
+        .print()
+    ,
+    newCanvas(200,30)
+        .add( 0 , 5 , newText("Yes") )
+        .add( "right at 100%" , 5 , newText("No") )
+        .print()
+    ,
+    newSelector("answer")
+        .add( getText("Yes") , getText("No") )
+        .log()
+        .wait()
+    ,
+    newButton("Next")
+        .print()
+        .wait()
+)
+
+newTrial("end",
+    newText("sentence2", "Thank you for your participation")
+        .print()
+        .center()
+    ,
+    newCanvas("empty canvas20", 1, 30)
+        .print()
+    ,
+    newText("Here is your code.")
+        .center()
+        .print()
+        .bold()
+    ,
+    
+    newCanvas("empty canvas330", 1, 30)
+        .print()
+    ,
+    newText("Please enter it into Prolific in order to get your reward")
+        .center()
+        .print()
+    ,
+    newCanvas("empty canvas40", 1, 30)
+        .print()
+    ,
+    newText("C1IRHQ8F")
+        .center()
+        .settings.css("font-size", 23 )
+        .bold()
+        .print()
+    ,
+    newCanvas("empty canvas301", 1, 40)
+        .print()
+    ,
+    newText("Once this is done, you can close this window. The experiment is finished.")
+        .center()
+        .print()
+    ,
+    
+    newCanvas("empty canvas3", 1, 40)
+        .print()
+    ,
+    newButton("Finish")
+        .print()
+        .center()
+        .wait()
+    ,
 )

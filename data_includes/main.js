@@ -119,7 +119,7 @@ newTrial("instructions",defaultImage.size(100,100),
         .bold()
         .center()
     ,
-    newImage("red square", "example.svg")
+    newImage("red square", "example.png")
         .print()
         .center()
     ,

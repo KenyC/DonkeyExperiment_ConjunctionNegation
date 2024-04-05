@@ -363,8 +363,7 @@ shape_mapping = {
 def draw_model(model, filepath):
 	SQUARE_SIZE = 120
 
-
-	surface = cairo.SVGSurface(filepath, 2 * SQUARE_SIZE, 2 * SQUARE_SIZE)
+	surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, 2 * SQUARE_SIZE, 2 * SQUARE_SIZE)
 	context = cairo.Context(surface)
 
 	centers = [
@@ -380,10 +379,8 @@ def draw_model(model, filepath):
 		shape_mapping[shape](context, color)
 		context.restore()
 
-
-	surface.finish()
-
-
+	surface.write_to_png(filepath)
+		
 # %%
 """
 First, let's generate an example picture
@@ -396,7 +393,7 @@ class ExampleTrial(TargetTrial):
 
 model = ExampleTrial().find_solution()
 
-draw_model(model, os.path.join(chunk_includes_dir, "example.svg"))
+draw_model(model, os.path.join(chunk_includes_dir, "example.png"))
 
 # %%
 import csv
@@ -442,7 +439,7 @@ with open(os.path.join(chunk_includes_dir, "trials.csv"), "w") as file:
 
 
 			full_condition = f"{group}_{condition}"
-			filename = f"{full_condition}_{i}.svg"
+			filename = f"{full_condition}_{i}.png"
 
 			draw_model(model, os.path.join(chunk_includes_dir, filename))
 

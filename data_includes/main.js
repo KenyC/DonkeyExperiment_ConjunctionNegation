@@ -203,7 +203,7 @@ newTrial("colorblind_question",
         .add( "right at 100%" , 5 , newText("No") )
         .print()
     ,
-    newSelector("answer1")
+    newSelector("colorblind")
         .add( getText("Yes") , getText("No") )
         .log()
         .wait()
@@ -222,7 +222,7 @@ newTrial("native_question",
         .add( "right at 100%" , 5 , newText("No") )
         .print()
     ,
-    newSelector("answer")
+    newSelector("native")
         .add( getText("Yes") , getText("No") )
         .log()
         .wait()

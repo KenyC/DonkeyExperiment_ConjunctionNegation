@@ -1,5 +1,6 @@
 # %%
 import enum
+import os
 
 
 class Color(enum.Enum):
@@ -19,12 +20,14 @@ n_shapes = 4
 import argparse
 
 parser = argparse.ArgumentParser(description="Creates image and csv for trials")
-parser.add_argument("--chunk", help='Path to the "chunk_includes" directory')
+parser.add_argument("--dir", help='Path to the PCIbex directory')
 args = parser.parse_args()
 
-chunk_includes_dir = "./"
-if args.chunk:
-	chunk_includes_dir = args.chunk
+main_dir = "./"
+if args.dir:
+	main_dir = args.dir
+chunk_includes_dir = os.path.join(main_dir, "chunk_includes")
+data_includes_dir = os.path.join(main_dir, "data_includes")
 
 # %%
 """
@@ -70,7 +73,7 @@ class TargetTrial(Trial):
 
 class TargetNegTrial(TargetTrial):
 	def sentence(self):
-		return f"There is a {self.sentence_shape.name.lower()} and it isn't {self.sentence_color.name.lower()}."
+		return f"There is a {self.sentence_shape.name.lower()} and it is not {self.sentence_color.name.lower()}."
 
 
 
@@ -389,6 +392,7 @@ def draw_model(model, filepath):
 First, let's generate an example picture
 """
 import os
+import io
 
 class ExampleTrial(TargetTrial):
 	def constraint(self):
@@ -396,10 +400,16 @@ class ExampleTrial(TargetTrial):
 
 model = ExampleTrial().find_solution()
 
-draw_model(model, os.path.join(chunk_includes_dir, "example.svg"))
+
+svg_resources_dict = {}
+svg_buffer = io.BytesIO()
+draw_model(model, svg_buffer)
+svg_resources_dict["example.svg"] = svg_buffer.getvalue().decode("utf-8")
+
 
 # %%
 import csv
+import json
 
 trials = [
 	(3, "pos",     "forall",        TargetTrialPosForAll), 
@@ -418,6 +428,7 @@ trials = [
 ]
 
 
+
 with open(os.path.join(chunk_includes_dir, "trials.csv"), "w") as file:
 	writer = csv.DictWriter(file, fieldnames=[
 		"trial_no",
@@ -434,6 +445,7 @@ with open(os.path.join(chunk_includes_dir, "trials.csv"), "w") as file:
 	])
 	writer.writeheader()
 
+
 	for n_trials, group, condition, GivenTrial in trials:
 		
 
@@ -444,14 +456,16 @@ with open(os.path.join(chunk_includes_dir, "trials.csv"), "w") as file:
 			full_condition = f"{group}_{condition}"
 			filename = f"{full_condition}_{i}.svg"
 
-			draw_model(model, os.path.join(chunk_includes_dir, filename))
+			svg_buffer = io.BytesIO()
+			draw_model(model, svg_buffer)
+			svg_resources_dict[filename] = svg_buffer.getvalue().decode("utf-8")
 
 			writer.writerow({
 				"trial_no" : i,
 				"sentence" : model.sentence(),
 
 
-				"set" :          group,
+				"set" :            group,
 				"condition" :      condition,
 				"full_condition" : full_condition,
 
@@ -460,5 +474,9 @@ with open(os.path.join(chunk_includes_dir, "trials.csv"), "w") as file:
 
 				"filename" : filename,
 			})
+
+
+with open(os.path.join(data_includes_dir, "_svg.js"), "w") as file:
+	file.write(f"const SVGS = {json.dumps(svg_resources_dict)};")
 
 

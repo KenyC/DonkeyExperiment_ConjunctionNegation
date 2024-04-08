@@ -11,18 +11,18 @@ trial_no,sentence,set,condition,full_condition,shape0,shape1,shape2,shape3,color
 0,There is a square and it is blue.,pos,conj1false,pos_conj1false,CIRCLE,CIRCLE,CIRCLE,CIRCLE,BLUE,BLUE,GREEN,RED,pos_conj1false_0.svg
 1,There is a circle and it is red.,pos,conj1false,pos_conj1false,SQUARE,TRIANGLE,SQUARE,SQUARE,GREEN,BLUE,RED,GREEN,pos_conj1false_1.svg
 2,There is a square and it is green.,pos,conj1false,pos_conj1false,CIRCLE,TRIANGLE,CIRCLE,TRIANGLE,BLUE,GREEN,RED,BLUE,pos_conj1false_2.svg
-0,There is a square and it isn't green.,neg,forall,neg_forall,TRIANGLE,CIRCLE,SQUARE,SQUARE,BLUE,GREEN,RED,RED,neg_forall_0.svg
-1,There is a triangle and it isn't red.,neg,forall,neg_forall,TRIANGLE,SQUARE,TRIANGLE,CIRCLE,BLUE,BLUE,BLUE,RED,neg_forall_1.svg
-2,There is a triangle and it isn't red.,neg,forall,neg_forall,CIRCLE,TRIANGLE,CIRCLE,TRIANGLE,BLUE,BLUE,BLUE,GREEN,neg_forall_2.svg
-0,There is a triangle and it isn't red.,neg,exists,neg_exists,SQUARE,TRIANGLE,SQUARE,TRIANGLE,GREEN,RED,BLUE,GREEN,neg_exists_0.svg
-1,There is a triangle and it isn't blue.,neg,exists,neg_exists,TRIANGLE,TRIANGLE,CIRCLE,SQUARE,RED,BLUE,BLUE,GREEN,neg_exists_1.svg
-2,There is a circle and it isn't blue.,neg,exists,neg_exists,CIRCLE,SQUARE,CIRCLE,TRIANGLE,RED,GREEN,BLUE,BLUE,neg_exists_2.svg
-0,There is a triangle and it isn't red.,neg,conj1false,neg_conj1false,CIRCLE,SQUARE,SQUARE,CIRCLE,BLUE,BLUE,RED,BLUE,neg_conj1false_0.svg
-1,There is a circle and it isn't red.,neg,conj1false,neg_conj1false,TRIANGLE,SQUARE,TRIANGLE,SQUARE,BLUE,BLUE,BLUE,RED,neg_conj1false_1.svg
-2,There is a circle and it isn't blue.,neg,conj1false,neg_conj1false,SQUARE,SQUARE,TRIANGLE,SQUARE,RED,BLUE,RED,BLUE,neg_conj1false_2.svg
-0,There is a square and it isn't green.,neg,conj2false,neg_conj2false,SQUARE,CIRCLE,CIRCLE,CIRCLE,GREEN,RED,BLUE,BLUE,neg_conj2false_0.svg
-1,There is a triangle and it isn't red.,neg,conj2false,neg_conj2false,SQUARE,TRIANGLE,SQUARE,CIRCLE,RED,RED,BLUE,GREEN,neg_conj2false_1.svg
-2,There is a square and it isn't green.,neg,conj2false,neg_conj2false,TRIANGLE,SQUARE,TRIANGLE,TRIANGLE,BLUE,GREEN,RED,GREEN,neg_conj2false_2.svg
+0,There is a square and it is not green.,neg,forall,neg_forall,TRIANGLE,CIRCLE,SQUARE,SQUARE,BLUE,GREEN,RED,RED,neg_forall_0.svg
+1,There is a triangle and it is not red.,neg,forall,neg_forall,TRIANGLE,SQUARE,TRIANGLE,CIRCLE,BLUE,BLUE,BLUE,RED,neg_forall_1.svg
+2,There is a triangle and it is not red.,neg,forall,neg_forall,CIRCLE,TRIANGLE,CIRCLE,TRIANGLE,BLUE,BLUE,BLUE,GREEN,neg_forall_2.svg
+0,There is a triangle and it is not red.,neg,exists,neg_exists,SQUARE,TRIANGLE,SQUARE,TRIANGLE,GREEN,RED,BLUE,GREEN,neg_exists_0.svg
+1,There is a triangle and it is not blue.,neg,exists,neg_exists,TRIANGLE,TRIANGLE,CIRCLE,SQUARE,RED,BLUE,BLUE,GREEN,neg_exists_1.svg
+2,There is a circle and it is not blue.,neg,exists,neg_exists,CIRCLE,SQUARE,CIRCLE,TRIANGLE,RED,GREEN,BLUE,BLUE,neg_exists_2.svg
+0,There is a triangle and it is not red.,neg,conj1false,neg_conj1false,CIRCLE,SQUARE,SQUARE,CIRCLE,BLUE,BLUE,RED,BLUE,neg_conj1false_0.svg
+1,There is a circle and it is not red.,neg,conj1false,neg_conj1false,TRIANGLE,SQUARE,TRIANGLE,SQUARE,BLUE,BLUE,BLUE,RED,neg_conj1false_1.svg
+2,There is a circle and it is not blue.,neg,conj1false,neg_conj1false,SQUARE,SQUARE,TRIANGLE,SQUARE,RED,BLUE,RED,BLUE,neg_conj1false_2.svg
+0,There is a square and it is not green.,neg,conj2false,neg_conj2false,SQUARE,CIRCLE,CIRCLE,CIRCLE,GREEN,RED,BLUE,BLUE,neg_conj2false_0.svg
+1,There is a triangle and it is not red.,neg,conj2false,neg_conj2false,SQUARE,TRIANGLE,SQUARE,CIRCLE,RED,RED,BLUE,GREEN,neg_conj2false_1.svg
+2,There is a square and it is not green.,neg,conj2false,neg_conj2false,TRIANGLE,SQUARE,TRIANGLE,TRIANGLE,BLUE,GREEN,RED,GREEN,neg_conj2false_2.svg
 0,There is a circle and the square is red,control,conj1false,control_conj1false,TRIANGLE,TRIANGLE,TRIANGLE,SQUARE,GREEN,RED,RED,RED,control_conj1false_0.svg
 1,There is a circle and the triangle is red,control,conj1false,control_conj1false,TRIANGLE,SQUARE,SQUARE,SQUARE,RED,BLUE,RED,BLUE,control_conj1false_1.svg
 2,There is a square and the triangle is green,control,conj1false,control_conj1false,TRIANGLE,CIRCLE,CIRCLE,CIRCLE,GREEN,BLUE,RED,GREEN,control_conj1false_2.svg

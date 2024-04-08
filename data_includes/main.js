@@ -1,4 +1,5 @@
 unique_id = [1,2].map(v=>Math.floor((1+Math.random())*0x10000).toString(16).substring(1)).join('-');
+const create_url_for_svg = name => "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(SVGS[name]);
 
 PennController.ResetPrefix(null)
 
@@ -124,7 +125,7 @@ newTrial("instructions",defaultImage.size(100,100),
         .bold()
         .center()
     ,
-    newImage("red square", "example.svg")
+    newImage("red square", create_url_for_svg('example.svg'))
         .print()
         .center()
     ,
@@ -162,7 +163,7 @@ Template("trials.csv", row =>
             .print()
         ,
 
-        newImage("pict", row.filename)
+        newImage("pict", create_url_for_svg(row.filename))
             .print()
             .center()
         ,    

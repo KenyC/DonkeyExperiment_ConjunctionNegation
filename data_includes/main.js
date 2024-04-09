@@ -241,7 +241,7 @@ newTrial("end",
     newCanvas("empty canvas20", 1, 30)
         .print()
     ,
-    newText('Click <a href="https://app.prolific.com/submissions/complete?cc=C1IRHQ8F">here</a> to go back to Prolific and get your reward')
+    newText('Click <a href="' + completion_code_link + '">here</a> to go back to Prolific and get your reward')
         .center()
         .print()
         .bold()
@@ -257,7 +257,7 @@ newTrial("end",
     newCanvas("empty canvas40", 1, 30)
         .print()
     ,
-    newText("C1IRHQ8F")
+    newText(completion_code)
         .center()
         .settings.css("font-size", 23 )
         .bold()

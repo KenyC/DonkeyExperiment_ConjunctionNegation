@@ -241,33 +241,15 @@ class TargetTrialNegConj1False(TargetNegTrial):
 
 
 
-class ControlTrialConj1False(ControlTrial):
+class ControlTrialBothConjFalse(ControlTrial):
 	def constraint(model):
 		"""
-		Condition CONTROL-CONJ1-FALSE
+		Condition CONTROL-BOTHCONJSFALSE
 		  - no SHAPE
-		  - one OTHER_SHAPE 
-		  - other shape is COLOR
-		"""
-		no_shape = sum(1 for shape in model.shapes if shape == model.sentence_shape) == 0
-		one_other_shape = sum(1 for shape in model.shapes if shape == model.sentence_other_shape) == 1
-		other_shape_is_color = all(
-			color == model.sentence_color
-			for (shape, color) in zip(model.shapes, model.colors)
-			if shape == model.sentence_other_shape
-		)
-		return no_shape and one_other_shape and other_shape_is_color
-
-
-class ControlTrialConj2False(ControlTrial):
-	def constraint(model):
-		"""
-		Condition CONTROL-CONJ1-FALSE
-		  - one SHAPE
 		  - one OTHER_SHAPE 
 		  - other shape is not COLOR
 		"""
-		no_shape = sum(1 for shape in model.shapes if shape == model.sentence_shape) == 1
+		no_shape = sum(1 for shape in model.shapes if shape == model.sentence_shape) == 0
 		one_other_shape = sum(1 for shape in model.shapes if shape == model.sentence_other_shape) == 1
 		other_shape_is_not_color = all(
 			color != model.sentence_color
@@ -275,6 +257,8 @@ class ControlTrialConj2False(ControlTrial):
 			if shape == model.sentence_other_shape
 		)
 		return no_shape and one_other_shape and other_shape_is_not_color
+
+
 
 class ControlTrialTrue(ControlTrial):
 	def constraint(model):
@@ -308,7 +292,7 @@ trials = [
 	# TargetTrialNegConj2False, 
 	# TargetTrialNegConj1False,
 
-	# ControlTrialConj1False,
+	# ControlTrialBothConjFalse,
 	# ControlTrialConj2False,
 	ControlTrialTrue,
 ]
@@ -422,9 +406,8 @@ trials = [
 	(3, "neg",     "conj1false",    TargetTrialNegConj1False),
 	(3, "neg",     "conj2false",    TargetTrialNegConj2False), 
 
-	(3, "control", "conj1false",    ControlTrialConj1False),
-	(3, "control", "conj2false",    ControlTrialConj2False),
-	(6, "control", "true",          ControlTrialTrue),
+	(3, "control", "bothconjfalse", ControlTrialBothConjFalse),
+	(3, "control", "true",          ControlTrialTrue),
 ]
 
 
@@ -458,6 +441,8 @@ with open(os.path.join(chunk_includes_dir, "trials.csv"), "w") as file:
 
 			svg_buffer = io.BytesIO()
 			draw_model(model, svg_buffer)
+			# To inspect the images more easily, also render them to a file
+			draw_model(model, os.path.join("out/", filename))
 			svg_resources_dict[filename] = svg_buffer.getvalue().decode("utf-8")
 
 			writer.writerow({

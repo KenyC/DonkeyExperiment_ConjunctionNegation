@@ -313,7 +313,7 @@ trials = [
 	ControlTrialTrue,
 ]
 
-random.seed(23012202)
+random.seed(12909052)
 
 for GivenTrial in trials:
 	print("========================")

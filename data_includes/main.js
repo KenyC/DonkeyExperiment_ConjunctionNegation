@@ -241,7 +241,7 @@ newTrial("end",
     newCanvas("empty canvas20", 1, 30)
         .print()
     ,
-    newText("Here is your code.")
+    newText('Click <a href="https://app.prolific.com/submissions/complete?cc=C1IRHQ8F">here</a> to go back to Prolific and get your reward')
         .center()
         .print()
         .bold()
@@ -250,7 +250,7 @@ newTrial("end",
     newCanvas("empty canvas330", 1, 30)
         .print()
     ,
-    newText("Please enter it into Prolific in order to get your reward")
+    newText("If the link does not work, enter the code below in Prolific:")
         .center()
         .print()
     ,
@@ -266,7 +266,7 @@ newTrial("end",
     newCanvas("empty canvas301", 1, 40)
         .print()
     ,
-    newText("Once this is done, you can close this window. The experiment is finished.")
+    newText("Once this is done, you can close this window. The experiment is over.")
         .center()
         .print()
     ,
